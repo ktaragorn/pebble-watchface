@@ -27,7 +27,7 @@ static void initialise_ui(void) {
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_bitmaplayer_1);
   
   // s_timetext
-  s_timetext = text_layer_create(GRect(3, 12, 125, 49));
+  s_timetext = text_layer_create(GRect(0, 12, 132, 49));
   text_layer_set_background_color(s_timetext, GColorClear);
   text_layer_set_text_color(s_timetext, GColorWhite);
   text_layer_set_text(s_timetext, "00:00");
@@ -74,9 +74,17 @@ static void update_time(struct tm *tick_time){
 
   // Use 12 hour format
   strftime(buffer, sizeof("00:00"), "%I:%M", tick_time);
-
+  
   // Display this time on the TextLayer
   text_layer_set_text(s_timetext, buffer);
+  
+  //Set AM/PM
+  text_layer_set_text(s_ampm, tick_time->tm_hour > 12 ? "pm":"am");
+  
+  static char date[] = "Wed, 25 Mar";
+  
+  strftime(date, sizeof("Wed, 25 Mar"), "%a, %d %b", tick_time);
+  text_layer_set_text(s_datemonth, date);
 }
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
