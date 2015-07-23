@@ -1,0 +1,23 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "KT",
+    "longName": "Watchface",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "Watchface",
+    "targetPlatforms": [
+        "aplite",
+        "basalt"
+    ],
+    "uuid": "3806dfda-742a-4b96-8a6f-7cc537e5184a",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
