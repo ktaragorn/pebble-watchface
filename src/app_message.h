@@ -5,8 +5,7 @@ enum {
   EVENT = 1
 };
 
-static void inbox_received_callback(DictionaryIterator *iterator, void *context) 
-  APP_LOG(APP_LOG_LEVEL_INFO, "App Message received by watch!");
+static void inbox_received_callback(DictionaryIterator *iterator, void *context) {
    // Read first item
   Tuple *t = dict_read_first(iterator);
   
@@ -16,6 +15,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
 
   // For all items
   while(t != NULL) {
+    APP_LOG(APP_LOG_LEVEL_INFO, "App Message tuple (%d) received by watch!", (int)t->key);
     // Which key was received?
     switch(t->key) {
     case TIME:
@@ -28,10 +28,10 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
       APP_LOG(APP_LOG_LEVEL_ERROR, "Key %d not recognized!", (int)t->key);
       break;
     }
-    update_calendar(time,event);
     // Look for next item
     t = dict_read_next(iterator);
   }
+  update_calendar(time,event);
 }
 
 static void send_app_message(){  
